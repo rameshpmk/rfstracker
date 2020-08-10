@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+
+<form class="" action="index.html" method="POST">
+  {% csrf_token %}
+
+  {{ form|crispy }}
+
+</form>
+
+<button onclick="closeWin()" class="btn btn-danger btn-md">Close</button>
+
+<script>
+function closeWin() {
+  close();
+}
+</script>
+
+
+{% endblock %}

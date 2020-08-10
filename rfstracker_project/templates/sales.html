@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block body_block %}
+
+  <h2>RFS list</h2>
+
+
+<br>
+<div class="button-group">
+
+  <!-- <a href="{% url 'rfstracker:displaysalesdb' %}" class="btn btn-primary btn-md" role="button">Display RFS List</a> -->
+  <a href="{% url 'rfstracker:addsalesdb' %}" class="btn btn-primary btn-md" role="button">Add New RFS</a>
+
+  <br>
+  <br>
+
+  <table class="table table-hover table-sm">
+    <thead class="p-3 mb-2 bg-danger text-white">
+
+      <th>ID</th>
+      <th>RFS Number</th>
+      <th>OPP Number</th>
+      <th>Description</th>
+      <th>Date</th>
+      <th>RFS Request File</th>
+      <th>Queue</th>
+
+
+    </thead>
+
+    <tbody>
+      {% for entry in entries %}
+
+      <tr>
+        <td><a href="{% url 'rfstracker:displaydetailsdb' entry.pk %}">{{entry.pk}}</a></td>
+        <td>{{entry.rfsnumber}}</td>
+        <td>{{entry.oppnumber}}</td>
+        <td>{{entry.description}}</td>
+        <td>{{entry.datecreated}}</td>
+        {% if entry.rfsreqfile %}
+        <td>
+          <a href="{{ entry.rfsreqfile.url }}" target="_blank">download</a>
+        </td>
+        {% else %}
+        <td>{{ entry.rfsreqfile }}</td>
+        {% endif %}
+        <!-- <td>{{entry.rfsreqfile}}</td> -->
+        <td>{{entry.queue}}</td>
+        <td><a href="{% url 'rfstracker:editsalesdb' entry.pk %}" class="btn btn-warning btn-sm" role="button">Edit</a></td>
+        <td><a href="{% url 'rfstracker:deletesalesdb' entry.pk %}" class="btn btn-danger btn-sm" role="button">X</a></td>
+
+      </tr>
+
+      {% endfor %}
+    </tbody>
+
+
+  </table>
+
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block body_block %}
+
+<h1>I am from add progress page</h1>
+
+<form  method="POST" enctype="multipart/form-data">
+
+  {% csrf_token %}
+  {{ form|crispy }}
+  <input type="submit" class="btn btn-primary btn-md" value="Add progress details">
+
+</form>
+<br>
+<button class="btn btn-primary btn-md">Back</button>
+
+
+
+<br><br>
+<h1> {{invalidmsg}} </h1>
+{% endblock %}

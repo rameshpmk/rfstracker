@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block body_block %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h2>Add RFS details</h2>
+
+    <form  method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      {{ form|crispy }}
+
+      <input type="submit" class="btn btn-primary btn-md" value="Add">
+      <a href="{% url 'rfstracker:displaysalesdb' %}" class="btn btn-danger btn-md" role="button">Exit</a>
+    </form>
+
+
+    <br>
+    <br>
+    <h1></h1>{{ invalidmsg }}
+
+  </body>
+</html>
+
+{% endblock %}
